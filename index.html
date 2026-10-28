@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Michael Alia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Michael Alia, applied AI and data engineer in France. LLM automations, data pipelines, BI dashboards and machine learning research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column like an academic homepage; a sticky section index on wide screens, dated lists in a mono gutter. */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --fg:#17202b; --muted:#5a6575; --line:#dde2e9;
+  --accent:#2747b8; --accent-soft:#e6ebfa; --signal:#b86a00;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e131a; --surface:#151c25; --fg:#e4e8ee; --muted:#9aa5b4; --line:#263140;
+  --accent:#8fa8ff; --accent-soft:#1c2740; --signal:#f0a640; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e131a; --surface:#151c25; --fg:#e4e8ee; --muted:#9aa5b4; --line:#263140;
+  --accent:#8fa8ff; --accent-soft:#1c2740; --signal:#f0a640; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--fg);font:400 1.0625rem/1.65 var(--body);margin:0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h2{font-size:1.55rem;font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.12rem;font-weight:600}
+p{margin:0}
+
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 64px;display:grid;grid-template-columns:190px minmax(0,1fr);gap:56px}
+.index{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 32px);align-self:start;padding-top:40px;display:flex;flex-direction:column;gap:6px;font:500 .8rem/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.index a{color:var(--muted);text-decoration:none;padding:4px 0}
+.index a:hover{color:var(--accent)}
+.index .who{font:700 1rem/1.2 var(--display);text-transform:none;letter-spacing:0;color:var(--fg);margin-bottom:14px}
+main{min-width:0;display:flex;flex-direction:column;gap:64px;padding-top:40px}
+section{display:flex;flex-direction:column;gap:20px;scroll-margin-top:24px}
+.lede{color:var(--muted);max-width:62ch}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:132px minmax(0,1fr);gap:28px;align-items:start}
+.portrait{width:132px;height:132px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font:700 2.6rem/1 var(--display);position:relative;overflow:hidden}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero h1{font-size:clamp(2.2rem,5vw,3.3rem);font-weight:700;letter-spacing:-.02em}
+.role{font:500 .95rem/1.5 var(--mono);color:var(--muted);margin-top:6px}
+.chirp{display:block;width:100%;max-width:420px;height:28px;margin:14px 0 4px}
+.chirp path{fill:none;stroke:var(--accent);stroke-width:1.4}
+.links{display:flex;flex-wrap:wrap;gap:8px 18px;font:500 .85rem/1.4 var(--mono);margin-top:10px}
+.bio{display:flex;flex-direction:column;gap:14px;max-width:66ch;margin-top:8px}
+.open{border-left:3px solid var(--signal);padding:4px 0 4px 14px;color:var(--fg)}
+
+/* Dated lists */
+.dated{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.dated li{display:grid;grid-template-columns:118px minmax(0,1fr);gap:16px}
+.date{font:400 .82rem/1.9 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* Projects */
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card p{font-size:.98rem}
+.kicker{font:500 .72rem/1.3 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--signal)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.tags span{font:400 .74rem/1 var(--mono);background:var(--accent-soft);color:var(--accent);padding:5px 8px;border-radius:4px}
+
+/* Research */
+.paper{display:flex;flex-direction:column;gap:10px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+.paper:last-child{border-bottom:0;padding-bottom:0}
+.meta{font:400 .85rem/1.5 var(--mono);color:var(--muted)}
+.paper ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
+figure{margin:8px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto}
+figcaption{font:400 .8rem/1.5 var(--mono);color:var(--muted);margin-top:8px;max-width:70ch}
+#acc{display:block;width:100%;min-width:460px;height:auto}
+#acc text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+#acc .lbl{fill:var(--fg)}
+.legend{display:flex;gap:18px;font:400 .78rem/1 var(--mono);color:var(--muted);margin-bottom:10px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+/* Experience */
+.role-title{font-weight:600}
+.org{color:var(--muted)}
+.exp li p{font-size:.98rem}
+
+.edu li .grade{color:var(--muted);font-size:.95rem}
+.certs{columns:2;column-gap:32px;margin:0;padding-left:1.1em}
+.certs li{break-inside:avoid;margin-bottom:6px}
+footer{font:400 .8rem/1.5 var(--mono);color:var(--muted);border-top:1px solid var(--line);padding-top:20px}
+
+@media (max-width:820px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:0}
+  .index{position:static;flex-direction:row;flex-wrap:wrap;gap:4px 16px;padding-top:24px}
+  .index .who{display:none}
+  main{padding-top:28px;gap:52px}
+  .projects{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){
+  .hero{grid-template-columns:minmax(0,1fr);gap:18px}
+  .portrait{width:104px;height:104px;font-size:2rem}
+  .dated li{grid-template-columns:minmax(0,1fr);gap:0}
+  .certs{columns:1}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="index" aria-label="Sections">
+    <span class="who">Michael Alia</span>
+    <a href="#about">About</a>
+    <a href="#news">News</a>
+    <a href="#projects">Projects</a>
+    <a href="#research">Research</a>
+    <a href="#experience">Experience</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <section id="about">
+      <div class="hero">
+        <div class="portrait" aria-hidden="true">MA<img src="assets/photo.jpg" alt="" onerror="this.remove()"></div>
+        <div>
+          <h1>Michael Alia</h1>
+          <p class="role">Applied AI &amp; Data Engineer · France · EN / FR</p>
+          <svg class="chirp" viewBox="0 0 420 28" preserveAspectRatio="none" aria-hidden="true"><path id="chirp-path" d=""></path></svg>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/alia-michael/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://deeptechaiitsolutions.com" target="_blank" rel="noopener">DeepTech AI &amp; IT Solutions</a>
+            <a href="#research">Research</a>
+            <a href="mailto:edumikealia@gmail.com">Email</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="bio">
+        <p>I'm co-founder of <a href="https://deeptechaiitsolutions.com" target="_blank" rel="noopener">DeepTech AI &amp; IT Solutions Ltd</a>, where I design and build AI solutions and help businesses bring AI into their everyday workflows.</p>
+        <p>I build practical AI and data systems: LLM-powered automations, data pipelines, APIs and dashboards that turn messy data into decisions. I've designed n8n workflows that enrich and qualify leads automatically with OpenAI, Supabase and PostgreSQL, built KPI dashboards in Looker Studio and Power BI, and I run the digital infrastructure and systems operations of Serenit'IA, a privacy-first AI literacy initiative for families.</p>
+        <p>I also teach. I run an AI training cycle for AMIA, where I show developers how to build and deploy LLM agent APIs with FastAPI and Docker.</p>
+        <p>My foundation is academic: a BSc in Mathematics, an MSc in Data Science (First Class) and a Master's in Computer Science from Université Clermont Auvergne, with machine learning research on antibiotic resistance and on LoRaWAN IoT networks at the LIMOS lab (CNRS).</p>
+        <p class="open">Open to AI engineer, data scientist and BI developer roles in France, the Netherlands, Germany or remote, and to research engineer or CIFRE PhD positions.</p>
+      </div>
+    </section>
+
+    <section id="news">
+      <h2>News</h2>
+      <ul class="dated">
+        <li><span class="date">Oct 2026</span><p>Started a fortnightly AI training cycle for <strong>AMIA</strong> (Moroccan Association of Computer Science and AI). First session: building and deploying an AI agent API with open-source LLMs.</p></li>
+        <li><span class="date">Sep 2026</span><p>Co-founded <strong>DeepTech AI &amp; IT Solutions Ltd</strong> to build AI solutions and help businesses integrate AI into their workflows.</p></li>
+        <li><span class="date">Nov 2025</span><p>Joined <strong>Serenit'IA</strong>, a privacy-first AI literacy initiative for families, as a founding team member leading digital infrastructure and systems operations.</p></li>
+        <li><span class="date">Aug 2025</span><p>Published a case study on an n8n lead-enrichment pipeline.</p></li>
+        <li><span class="date">Feb 2025</span><p>Completed the Udacity <em>Foundation of Generative AI</em> Nanodegree.</p></li>
+        <li><span class="date">Dec 2024</span><p>Awarded the Master's in Computer Science (International Computer Science track) by Université Clermont Auvergne.</p></li>
+        <li><span class="date">Sep 2024</span><p>Completed a six-month research internship at LIMOS on sender identification in LoRa networks.</p></li>
+        <li><span class="date">Mar 2024</span><p>Completed an M2 research project at LIMOS on perpetual grid exploration by luminous robots, part of the ANR SkyData project.</p></li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects">
+        <article class="card">
+          <span class="kicker">Product · DeepTech AI &amp; IT Solutions</span>
+          <h3>QR code generator</h3>
+          <p>A web app for creating QR codes for links and business information, built and shipped as one of DeepTech's own products.</p>
+          <div class="tags"><span>Web app</span><span>Product build</span></div>
+        </article>
+        <article class="card">
+          <span class="kicker">Product · DeepTech AI &amp; IT Solutions</span>
+          <h3>PDF editing web app</h3>
+          <p>A browser-based tool for editing PDF documents without desktop software, built and shipped as one of DeepTech's own products.</p>
+          <div class="tags"><span>Web app</span><span>Document tools</span></div>
+        </article>
+        <article class="card">
+          <span class="kicker">LLM automation · Raket</span>
+          <h3>Lead enrichment and qualification pipeline</h3>
+          <p>An n8n workflow that scrapes and enriches prospect data, scores leads with OpenAI and writes the results to Supabase/PostgreSQL, replacing manual research for a sales team.</p>
+          <div class="tags"><span>n8n</span><span>OpenAI API</span><span>Bright Data</span><span>Supabase</span><span>PostgreSQL</span></div>
+        </article>
+        <article class="card">
+          <span class="kicker">Teaching project · AMIA</span>
+          <h3>AI agent API with open-source LLMs</h3>
+          <p>A FastAPI service with Pydantic schemas that wraps open-source models served through Groq or Ollama, packaged with Docker for deployment. Built as the reference project for my AMIA sessions.</p>
+          <div class="tags"><span>FastAPI</span><span>Pydantic</span><span>Groq</span><span>Ollama</span><span>Docker</span></div>
+        </article>
+        <article class="card">
+          <span class="kicker">Platform · Serenit'IA</span>
+          <h3>Odyssey AI platform for families</h3>
+          <p>I run the infrastructure behind Serenit'IA's family AI literacy programme and its Odyssey AI pilot: site architecture, GitHub deployment workflows, static hosting on Amazon S3 with CloudFront, a database for player data, and SEO.</p>
+          <div class="tags"><span>AWS S3</span><span>CloudFront</span><span>GitHub Actions</span><span>SEO</span></div>
+        </article>
+        <article class="card">
+          <span class="kicker">Business intelligence · Outsource My Life</span>
+          <h3>Automated KPI reporting</h3>
+          <p>Multi-source BI dashboards and automated website reporting in Looker Studio and Power BI, so clients see current numbers without building reports by hand.</p>
+          <div class="tags"><span>Looker Studio</span><span>Power BI</span><span>SQL</span><span>WordPress</span></div>
+        </article>
+        <article class="card">
+          <span class="kicker">Data science · Toko Marketplace</span>
+          <h3>Churn prediction and experiments</h3>
+          <p>Churn models (logistic regression, random forests, XGBoost) to flag high-risk subscribers, plus A/B tests to measure product and marketing changes.</p>
+          <div class="tags"><span>Python</span><span>scikit-learn</span><span>XGBoost</span><span>SQL</span></div>
+        </article>
+        <article class="card">
+          <span class="kicker">Bioinformatics · MSc thesis</span>
+          <h3>Predicting antibiotic resistance from genomes</h3>
+          <p>Classifiers that predict resistance to three antibiotics from bacterial genome features. Details under Research.</p>
+          <div class="tags"><span>BioPython</span><span>scikit-learn</span><span>XGBoost</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+
+      <article class="paper">
+        <h3>Sender identification from the preamble of LoRa frames</h3>
+        <p class="meta">M2 internship report · LIMOS (CNRS UMR 6158), Université Clermont Auvergne · Mar–Sep 2024<br>Supervised by Prof. Alexandre Guitton and Dr Nancy El Rachkidy</p>
+        <p>LoRaWAN frames carry a device identifier, which costs throughput on a network that only moves a few bits per second. I tested whether the gateway could instead recognise the sender from physical traits of the frame preamble: the carrier frequency offset (CFO) and symbol timing offset (STO).</p>
+        <ul>
+          <li>Set up Heltec LoRa 32 end devices and a BladeRF software-defined radio gateway in GNU Radio, then built a simulator when hardware compatibility blocked capture.</li>
+          <li>Generated 2,000 frames from 20 nodes at spreading factor 8, with separate channel and per-gateway noise models grounded in the 868 MHz hardware limits.</li>
+          <li>Compared five supervised models and three clustering methods using one and two gateways.</li>
+        </ul>
+        <figure>
+          <div class="legend"><span><i style="background:var(--muted)"></i>1 gateway</span><span><i style="background:var(--accent)"></i>2 gateways</span><span><i style="background:var(--signal)"></i>chance (1 in 20)</span></div>
+          <svg id="acc" viewBox="0 0 560 250" role="img" aria-label="Sender identification accuracy by model. With two gateways, gradient boosting reached 25.1 percent against a 5 percent chance level."></svg>
+          <figcaption>Accuracy identifying 1 of 20 senders under heavy noise. The best model, gradient boosting with two gateways, reached 25.1%, five times chance. Six of eight methods singled out the same node, showing the CFO/STO signal is real but needs richer features.</figcaption>
+        </figure>
+      </article>
+
+      <article class="paper">
+        <h3>Exploration with obstacles by luminous robots</h3>
+        <p class="meta">M2 research project · LIMOS, Université Clermont Auvergne · SkyData project (ANR) · Oct 2023–Mar 2024<br>Supervised by Anaïs Durand · <a href="https://graal.ens-lyon.fr/skydata/2024/04/30/stage-3-exploration-with-obstacles-by-luminous-robots/" target="_blank" rel="noopener">Project page</a></p>
+        <p>Swarms of very simple robots can explore a space together if they coordinate well. These luminous robots have no memory, a short sensing range and no shared sense of direction, and they communicate only by showing coloured lights to their neighbours. The goal is a distributed algorithm that explores a finite 2D grid perpetually, so that every node is visited infinitely often.</p>
+        <ul>
+          <li>Studied grids that contain obstacles, a case the existing literature does not cover.</li>
+          <li>Analysed an optimal exploration algorithm by Bramas, Lafourcade and Devismes (<a href="https://doi.org/10.1145/3427796.3427834" target="_blank" rel="noopener">ICDCN 2021</a>) to test whether it still holds.</li>
+          <li>Showed that the algorithm still works with a single obstacle on an edge of the grid, but fails when the obstacle sits in a corner.</li>
+        </ul>
+      </article>
+
+      <article class="paper">
+        <h3>Identifying antibiotic-resistant bacteria using machine learning</h3>
+        <p class="meta">MSc Data Science thesis · GITAM University · Dec 2022–Apr 2023<br>Supervised by Prof. T. Uma Devi</p>
+        <p>I encoded <em>Neisseria gonorrhoeae</em> genomes with BioPython, used unitigs (DNA sequences shared across strains) as features, and trained decision tree and support vector classifiers, with XGBoost explored, to predict resistance to azithromycin, ciprofloxacin and cefixime. Models were tuned with GridSearchCV and k-fold cross-validation and scored on balanced accuracy, precision, recall and F1.</p>
+      </article>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul class="dated exp">
+        <li><span class="date">2026 – now</span><div><p class="role-title">Co-founder &amp; AI Solutions Architect</p><p class="org">DeepTech AI &amp; IT Solutions Ltd</p><p>Designs and builds AI applications, data systems and workflow automations, and helps businesses and enterprises integrate AI into their operations. Built the company's QR code generator and PDF editing web app.</p></div></li>
+        <li><span class="date">2026 – now</span><div><p class="role-title">AI Trainer</p><p class="org">AMIA, remote</p></div></li>
+        <li><span class="date">2025 – now</span><div><p class="role-title">Digital Infrastructure &amp; Systems Operations Lead</p><p class="org">Serenit'IA, France · founding team member</p><p>Runs the platform behind Serenit'IA's family AI literacy programme, including the Odyssey AI pilot: site architecture, deployment workflows, AWS hosting, player data and SEO.</p></div></li>
+        <li><span class="date">2025 – 2026</span><div><p class="role-title">Data Annotator &amp; Quality Specialist (freelance)</p><p class="org">TELUS Digital AI Data Solutions, remote</p><p>Multimodal training-data labelling and QA, with analysis and reporting on annotation quality.</p></div></li>
+        <li><span class="date">2025</span><div><p class="role-title">BI Developer &amp; Analyst (freelance)</p><p class="org">Outsource My Life, remote</p></div></li>
+        <li><span class="date">2025</span><div><p class="role-title">AI Automation Expert (freelance)</p><p class="org">Raket, remote</p></div></li>
+        <li><span class="date">2024</span><div><p class="role-title">Data Science Research Intern</p><p class="org">LIMOS laboratory, Clermont-Ferrand</p></div></li>
+        <li><span class="date">2023 – 2024</span><div><p class="role-title">Data Scientist</p><p class="org">Toko Marketplace, remote</p></div></li>
+      </ul>
+    </section>
+
+    <section id="teaching">
+      <h2>Teaching</h2>
+      <ul class="dated">
+        <li><span class="date">Oct 2026 – now</span><p><strong>AI training cycle</strong>, AMIA. Live sessions every two weeks on Microsoft Teams for developers and students. Topics include building and deploying LLM agent APIs with FastAPI, Pydantic, Groq/Ollama and Docker.</p></li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <ul class="dated edu">
+        <li><span class="date">2023 – 2024</span><div><p class="role-title">Master in Computer Science, International Computer Science track</p><p class="org">Université Clermont Auvergne / ISIMA, France</p><p class="grade">Machine learning and data mining, advanced ML, high-performance computing; research project and six-month research internship.</p></div></li>
+        <li><span class="date">2021 – 2023</span><div><p class="role-title">MSc Data Science</p><p class="org">GITAM University, Visakhapatnam, India</p><p class="grade">First Class, CGPA 8.39 / 10. Top grades in statistics, design of experiments and the machine learning lab.</p></div></li>
+        <li><span class="date">2016 – 2020</span><div><p class="role-title">BSc Mathematics</p><p class="org">Madras Christian College, University of Madras, India</p><p class="grade">First Class. Strongest in mathematical programming, resource optimisation and linear algebra.</p></div></li>
+      </ul>
+      <h3>Selected certifications</h3>
+      <ul class="certs">
+        <li>Foundation of Generative AI Nanodegree, Udacity (2025)</li>
+        <li>Power BI for Fashion with Guess, Joinrs (2025)</li>
+        <li>British Airways Data Science Job Simulation, Forage (2024)</li>
+        <li>Google Data Analytics Certificate, Coursera (2022)</li>
+      </ul>
+      <p class="lede"><strong>Languages:</strong> English (professional), French (working proficiency).</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="lede">I'm based in France and happy to talk about roles, AI projects for your business, or research collaborations.</p>
+      <ul class="dated">
+        <li><span class="date">Email</span><p><a href="mailto:edumikealia@gmail.com">edumikealia@gmail.com</a></p></li>
+        <li><span class="date">Phone</span><p><a href="tel:+33744720691">+33 7 44 72 06 91</a></p></li>
+        <li><span class="date">LinkedIn</span><p><a href="https://www.linkedin.com/in/alia-michael/" target="_blank" rel="noopener">linkedin.com/in/alia-michael</a></p></li>
+        <li><span class="date">Company</span><p><a href="https://deeptechaiitsolutions.com" target="_blank" rel="noopener">deeptechaiitsolutions.com</a></p></li>
+      </ul>
+    </section>
+
+    <footer>© 2026 Michael Alia</footer>
+  </main>
+</div>
+
+<script>
+// LoRa upchirp under the name: frequency rises linearly across each symbol.
+(function(){
+  var p=document.getElementById('chirp-path'); if(!p) return;
+  var d='', W=420, H=28, sym=3, n=600;
+  for(var i=0;i<=n;i++){
+    var x=i/n*W, t=(i/n*sym)%1, phase=2*Math.PI*(4*t+9*t*t);
+    d+=(i?'L':'M')+x.toFixed(1)+' '+(H/2+Math.sin(phase)*(H/2-2)).toFixed(1);
+  }
+  p.setAttribute('d',d);
+})();
+
+// Accuracy chart from the internship results tables (percent).
+(function(){
+  var svg=document.getElementById('acc'); if(!svg) return;
+  var ns='http://www.w3.org/2000/svg';
+  var rows=[['Logistic regression',20,18.62],['Random forest',21,22],['k-nearest neighbours',20.33,18.88],['Gradient boosting',20.5,25.12],['MLP neural network',20.5,21.38]];
+  var L=150, R=520, top=12, rowH=42, max=30, sx=function(v){return L+(R-L)*v/max};
+  function el(n,a){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e}
+  [0,5,10,15,20,25,30].forEach(function(v){
+    el('line',{x1:sx(v),x2:sx(v),y1:top,y2:top+rows.length*rowH,stroke:'var(--line)','stroke-width':1});
+    el('text',{x:sx(v),y:top+rows.length*rowH+16,'text-anchor':'middle'}).textContent=v+'%';
+  });
+  rows.forEach(function(r,i){
+    var y=top+i*rowH+6;
+    el('text',{x:L-10,y:y+15,'text-anchor':'end','class':'lbl'}).textContent=r[0];
+    el('rect',{x:L,y:y,width:sx(r[1])-L,height:12,rx:2,fill:'var(--muted)'});
+    el('rect',{x:L,y:y+15,width:sx(r[2])-L,height:12,rx:2,fill:'var(--accent)'});
+    el('text',{x:sx(r[2])+5,y:y+25}).textContent=r[2].toFixed(1);
+  });
+  el('line',{x1:sx(5),x2:sx(5),y1:top-4,y2:top+rows.length*rowH,stroke:'var(--signal)','stroke-width':2,'stroke-dasharray':'4 3'});
+})();
+</script>
+</body>
+</html>
